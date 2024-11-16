@@ -41,7 +41,10 @@
           <h3 class="title"><%= message.title %></h3>
           <p class="body"><%= message.body %></p>
           <h4><%=message.timestamp%></h4>
-          <h4>By <%=message.author || "Anonymous"%></h4>
+          <h4>
+            By <%=(typeof(message.author)=='string') ? message.author :
+            "Anonymous"%>
+          </h4>
         </div>
         <% }); %>
       </div>

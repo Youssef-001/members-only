@@ -52,9 +52,7 @@ app.get("/sign-up", (req, res) => {
 app.get("/login", (req, res) => res.render("login"));
 
 app.get("/message-board", async (req, res, next) => {
-  let messages = await db.getMessages();
-  authenticationHandler.isAuth(req, res, next),
-    res.render("messageBoard", { messages });
+  messageController.getMessages(req, res);
 });
 app.post("/create-message", (req, res) => {
   messageController.createMessage(req, res);
@@ -125,6 +123,15 @@ app.post(
     failureRedirect: "/login",
   })
 );
+
+app.get("/logout", (req, res, next) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect("/");
+  });
+});
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

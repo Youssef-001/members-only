@@ -22,7 +22,7 @@ async function getUserByEmail(email) {
 }
 
 async function getUserById(id) {
-  const { rows } = pool.query("SELECT * FROM members WHERE id=$1", [id]);
+  const { rows } = await pool.query("SELECT * FROM members WHERE id=$1", [id]);
   if (rows) return rows[0];
   else return null;
 }
@@ -36,6 +36,13 @@ async function getMessages() {
   console.log(rows);
   return rows;
 }
+async function getMessagesWithAuthor() {
+  let { rows } = await pool.query(
+    `SELECT * FROM messages JOIN members ON messages.author = members.id;`
+  );
+
+  return rows;
+}
 
 module.exports = {
   addMember,
@@ -43,4 +50,5 @@ module.exports = {
   getUserById,
   createMessage,
   getMessages,
+  getMessagesWithAuthor,
 };
