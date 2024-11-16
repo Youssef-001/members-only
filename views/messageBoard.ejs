@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Board</title>
+  </head>
+  <style>
+    h2 {
+      color: #f7bb50;
+    }
+
+    .container {
+      padding: 4rem;
+    }
+
+    .title {
+      font-size: 1.5rem;
+    }
+
+    .body {
+      font-size: 1.2rem;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .message {
+      border-bottom: 2px solid #f7bb50;
+    }
+  </style>
+  <body>
+    <%-include('header')%>
+    <div class="container">
+      <h2>Recent messages</h2>
+
+      <div class="messages">
+        <% messages.forEach((message) => { %>
+        <div class="message">
+          <h3 class="title"><%= message.title %></h3>
+          <p class="body"><%= message.body %></p>
+          <h4><%=message.timestamp%></h4>
+          <h4>By <%=message.author || "Anonymous"%></h4>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+  </body>
+</html>

@@ -12,6 +12,35 @@ async function addMember(member) {
   return rows[0]; // Return the first row if there's one
 }
 
+async function getUserByEmail(email) {
+  const { rows } = await pool.query(`SELECT * FROM members WHERE email=$1`, [
+    email,
+  ]);
+
+  if (rows) return rows[0];
+  return null;
+}
+
+async function getUserById(id) {
+  const { rows } = pool.query("SELECT * FROM members WHERE id=$1", [id]);
+  if (rows) return rows[0];
+  else return null;
+}
+
+async function createMessage(message) {
+  let { rows } = pool.query("INSERT INTO messages ()");
+}
+
+async function getMessages() {
+  let { rows } = await pool.query("SELECT * FROM messages");
+  console.log(rows);
+  return rows;
+}
+
 module.exports = {
   addMember,
+  getUserByEmail,
+  getUserById,
+  createMessage,
+  getMessages,
 };

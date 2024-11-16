@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Message</title>
+  </head>
+  <style>
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    input,
+    textarea {
+      padding: 0.5rem;
+      border-radius: 8px;
+      width: 90%;
+      border: 2px solid #d0d0d0;
+    }
+    body {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      background-color: #eee;
+    }
+    .container {
+      width: 25vw;
+      height: 50vh;
+      padding: 2rem;
+      background-color: white;
+      margin-top: 5rem;
+      border-radius: 13px;
+      padding-bottom: 10rem;
+    }
+
+    .submit {
+      padding: 1rem;
+      border-radius: 12px;
+      border: 2px solid #d0d0d0;
+    }
+
+    .form-elem {
+    }
+  </style>
+  <body>
+    <div class="container">
+      <h2 style="text-align: center">Write a message</h2>
+      <form action="/create-message" method="POST">
+        <div class="form-elem">
+          <label for="title"><div>Title</div></label>
+          <input type="text" name="title" />
+        </div>
+        <div class="form-elem">
+          <label for="message"><div>Message</div></label>
+          <textarea rows="5" type="text" name="message"></textarea>
+        </div>
+
+        <button class="submit" type="submit">Submit message</button>
+        <a href="/message-board">Go to Message board</a>
+      </form>
+    </div>
+  </body>
+</html>
