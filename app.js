@@ -36,13 +36,13 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session()); // Enable persistent login sessions
-
+app.use(express.static("public"));
 app.get("/", (req, res) => {
   if (req.isAuthenticated()) res.redirect("/message-board");
   else res.redirect("/login");
 });
 
-app.get("/create-message", (req, res) => {
+app.get("/new-message", (req, res) => {
   res.render("createMessage");
 });
 

@@ -44,6 +44,15 @@ async function getMessagesWithAuthor() {
   return rows;
 }
 
+async function addMessage(message) {
+  // title,timestamp, body, author;
+
+  await pool.query(
+    `INSERT INTO messages (title,timestamp, body, author) VALUES ($1, $2, $3, $4)`,
+    [message.title, message.timestamp, message.body, message.author]
+  );
+}
+
 module.exports = {
   addMember,
   getUserByEmail,
@@ -51,4 +60,5 @@ module.exports = {
   createMessage,
   getMessages,
   getMessagesWithAuthor,
+  addMessage,
 };

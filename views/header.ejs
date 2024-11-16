@@ -6,15 +6,48 @@
     <title>Header</title>
     <style>
       header {
-        height: 20vh;
+        height: 15vh;
         background-color: #ffaa60;
+      }
+
+      .plus {
+        font-size: 3rem;
+        width: 2rem;
+        height: 2rem;
+      }
+
+      a {
+        text-decoration: none;
+        color: black;
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        border: 1px solid #e4e4e7;
+        padding: 0.3rem;
+        border-radius: 5px;
+        font-size: 1.1rem;
+      }
+      .links {
+        display: flex;
+        gap: 1rem;
+        padding: 1rem;
       }
     </style>
   </head>
   <body>
     <header>
-      <a href="">Become member</a>
-      <a href="">Create new message</a>
+      <div class="links">
+        <a href=""
+          ><img class="plus" src="icons/account-plus.svg" alt="" />Become
+          member</a
+        >
+        <a href="/new-message"
+          ><img class="plus" src="icons/chat-plus.svg" alt="" /> Create new
+          message</a
+        >
+      </div>
     </header>
   </body>
 </html>
