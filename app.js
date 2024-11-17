@@ -58,6 +58,15 @@ app.post("/create-message", (req, res) => {
   messageController.createMessage(req, res);
 });
 
+app.get("/membership", (req, res) => {
+  if (req.isAuthenticated()) res.render("membership");
+  else throw new Error("not auth");
+});
+
+app.post('/membership', (req,res) => {
+  memberController.getMemberShip(req,res);
+})
+
 app.post("/sign-up", (req, res, next) => {
   try {
     bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {

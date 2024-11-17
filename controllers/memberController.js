@@ -4,4 +4,15 @@ async function addMember(req, res) {
   let user = await db.addMember(req.body);
 }
 
-module.exports = { addMember };
+async function getMemberShip(req, res) {
+  if (req.body.secret == "secret") {
+    console.log(req.session.passport.user);
+    await db.giveMembership(req.session.passport.user);
+  } else {
+    //
+  }
+
+  res.redirect("/");
+}
+
+module.exports = { addMember, getMemberShip };

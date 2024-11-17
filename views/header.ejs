@@ -34,19 +34,28 @@
         gap: 1rem;
         padding: 1rem;
       }
+
+      .logout {
+        margin-left: auto;
+      }
     </style>
   </head>
   <body>
     <header>
       <div class="links">
-        <a href=""
-          ><img class="plus" src="icons/account-plus.svg" alt="" />Become
-          member</a
-        >
+        <% if (!membership) { %>
+        <a href="/membership">
+          <img class="plus" src="icons/account-plus.svg" alt="" />
+          Become a member
+        </a>
+        <% } %>
+
         <a href="/new-message"
           ><img class="plus" src="icons/chat-plus.svg" alt="" /> Create new
           message</a
         >
+
+        <a class="logout" href="/logout">Logout</a>
       </div>
     </header>
   </body>

@@ -53,6 +53,10 @@
       font-size: 1rem;
     }
 
+    body {
+      background-color: #fff5e6;
+    }
+
     .login-form input:focus {
       border-color: #007bff;
       outline: none;
@@ -61,7 +65,7 @@
     button {
       width: 100%;
       padding: 0.8rem;
-      background-color: #007bff;
+      background-color: #ffaa60;
       border: none;
       border-radius: 4px;
       color: white;
@@ -71,16 +75,13 @@
     }
 
     button:hover {
-      background-color: #0056b3;
+      background-color: #e59450;
     }
 
-    .forgot-password {
-      display: block;
+    .btn {
       text-align: center;
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: #007bff;
-      text-decoration: none;
+      color: #ffaa60;
+      margin-top: 0.5rem;
     }
 
     .forgot-password:hover {
@@ -116,7 +117,9 @@
         <button type="submit">Login</button>
 
         <!-- Forgot Password Link -->
-        <a href="#" class="forgot-password">Forgot your password?</a>
+        <div class="btn">
+          <a href="/sign-up" class="forgot-password">Sign up</a>
+        </div>
       </form>
     </div>
   </body>

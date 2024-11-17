@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Membership</title>
+
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #fff5e6;
+      }
+      .container {
+        padding: 3rem;
+        margin-top: 6rem;
+        width: 20vw;
+        height: 40vh;
+        border: 2px solid red;
+        display: flex;
+        flex-direction: column;
+      }
+      h2 {
+        color: #ffa603;
+        text-align: center;
+      }
+
+      input {
+        width: 100%;
+        border-radius: 12px;
+        padding: 0.5rem;
+        border: 1px solid #ffa603;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      a {
+        color: #ff9000;
+        text-align: center;
+      }
+      span {
+      }
+
+      .confirm {
+        padding: 0.6rem;
+        background-color: #ff9000;
+        color: white;
+        border-radius: 12px;
+        border: 1px solid #ff9000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Membership</h2>
+
+      <form action="/membership" method="POST">
+        <div>
+          <span><label for="secret">Enter secret code</label></span>
+          <input style="margin-top: 5px" name="secret" type="password" />
+        </div>
+
+        <button class="confirm" type="submit">Confirm</button>
+        <a href="/message-board">Go to dashboard</a>
+      </form>
+    </div>
+  </body>
+</html>

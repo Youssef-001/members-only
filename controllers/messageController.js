@@ -36,7 +36,7 @@ async function getMessages(req, res) {
   let user = await db.getUserById(userId);
   console.log(user);
   if (user.membership == false) {
-    res.render("messageBoard", { messages });
+    res.render("messageBoard", { messages, membership: user.membership });
   } else {
     console.log("yes");
     messages = await db.getMessagesWithAuthor();
@@ -47,8 +47,11 @@ async function getMessages(req, res) {
         author: `${messages[i].firstname} ${messages[i].lastname}`,
       };
     }
-
-    res.render("messageBoard", { messages });
+    if (user.membership == true) {
+      res.render("messageBoard", { messages, membership: true });
+    } else {
+      res.render("messageBoard", { messages, membership: false });
+    }
   }
 }
 

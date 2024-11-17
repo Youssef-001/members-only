@@ -18,12 +18,13 @@
       border-radius: 8px;
       width: 90%;
       border: 2px solid #d0d0d0;
+      outline: none;
     }
     body {
       display: flex;
       justify-content: center;
       align-content: center;
-      background-color: #eee;
+      background-color: #fff5e6;
     }
     .container {
       width: 25vw;
@@ -41,7 +42,21 @@
       border: 2px solid #d0d0d0;
     }
 
-    .form-elem {
+    input:focus,
+    textarea:focus {
+      border-color: #ffaa60;
+    }
+
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: #ffaa60;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.3s;
     }
   </style>
   <body>
@@ -57,7 +72,7 @@
           <textarea rows="5" type="text" name="message"></textarea>
         </div>
 
-        <button class="submit" type="submit">Submit message</button>
+        <button type="submit">Submit message</button>
         <a href="/message-board">Go to Message board</a>
       </form>
     </div>
