@@ -39,7 +39,7 @@
     }
 
     .form-group {
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
     }
 
     .form-group label {
@@ -55,18 +55,49 @@
       border: 1px solid #ddd;
       border-radius: 4px;
       font-size: 1rem;
-      transition: border-color 0.3s;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
 
     .form-group input:focus {
       border-color: #e59450;
       outline: none;
+      box-shadow: 0 0 5px rgba(229, 148, 80, 0.4);
+    }
+
+    .form-group.error input {
+      border-color: #e94e4e;
+      background-color: #ffe6e6;
+    }
+
+    .error-message {
+      color: #e94e4e;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
     }
 
     .login {
       margin-top: 1rem;
       text-align: center;
+    }
+
+    .login a {
       color: #ffaa60;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .login a:hover {
+      color: #e59450;
     }
 
     button {
@@ -85,32 +116,67 @@
       background-color: #e59450;
     }
   </style>
+
   <body>
     <div class="signup-container">
       <form class="signup-form" action="/sign-up" method="POST">
         <h2>Sign Up</h2>
 
-        <div class="form-group">
+        <div
+          class="form-group <%= errors && errors.firstName ? 'error' : '' %>"
+        >
           <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" required />
+          <input
+            type="text"
+            id="firstName"
+            name="firstName"
+            value="<%= typeof firstName !== 'undefined' ? firstName : '' %>"
+            required
+          />
+          <% if (errors && errors.firstName) { %>
+          <div class="error-message"><%= errors.firstName %></div>
+          <% } %>
         </div>
 
-        <div class="form-group">
+        <div class="form-group <%= errors && errors.lastName ? 'error' : '' %>">
           <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" required />
+          <input
+            type="text"
+            id="lastName"
+            name="lastName"
+            value="<%= typeof lastName !== 'undefined' ? lastName : '' %>"
+            required
+          />
+          <% if (errors && errors.lastName) { %>
+          <div class="error-message"><%= errors.lastName %></div>
+          <% } %>
         </div>
 
-        <div class="form-group">
+        <div class="form-group <%= errors && errors.email ? 'error' : '' %>">
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" required />
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value="<%= typeof email !== 'undefined' ? email : '' %>"
+            required
+          />
+          <% if (errors && errors.email) { %>
+          <div class="error-message"><%= errors.email %></div>
+          <% } %>
         </div>
 
-        <div class="form-group">
+        <div class="form-group <%= errors && errors.password ? 'error' : '' %>">
           <label for="password">Password</label>
           <input type="password" id="password" name="password" required />
+          <% if (errors && errors.password) { %>
+          <div class="error-message"><%= errors.password %></div>
+          <% } %>
         </div>
 
-        <div class="form-group">
+        <div
+          class="form-group <%= errors && errors.confirmPassword ? 'error' : '' %>"
+        >
           <label for="confirmPassword">Confirm Password</label>
           <input
             type="password"
@@ -118,10 +184,15 @@
             name="confirmPassword"
             required
           />
+          <% if (errors && errors.confirmPassword) { %>
+          <div class="error-message"><%= errors.confirmPassword %></div>
+          <% } %>
         </div>
 
         <button type="submit">Sign Up</button>
-        <div class="login"><a href="/login">Already have account?</a></div>
+        <div class="login">
+          <a href="/login">Already have an account?</a>
+        </div>
       </form>
     </div>
   </body>

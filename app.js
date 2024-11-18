@@ -9,7 +9,7 @@ const bcrypt = require("bcryptjs");
 const PgSession = require("connect-pg-simple")(session);
 const messageController = require("./controllers/messageController");
 const authenticationHandler = require("./controllers/authenticationHandler");
-
+const validation = require("./controllers/validationController");
 let app = express();
 app.use(express.urlencoded({ extended: false }));
 
@@ -47,7 +47,7 @@ app.get("/new-message", (req, res) => {
 });
 
 app.get("/sign-up", (req, res) => {
-  res.render("sign-up");
+  res.render("sign-up", { errors: [] });
 });
 app.get("/login", (req, res) => res.render("login"));
 
@@ -71,20 +71,25 @@ app.get("/delete/:id", (req, res) => {
   messageController.deleteMessage(req, res);
 });
 
-app.post("/sign-up", (req, res, next) => {
-  try {
-    bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
-      if (err) return next(err);
-      else {
-        req.body.password = hashedPassword;
-        memberController.addMember(req, res);
-        res.redirect("/");
-      }
-    });
-  } catch (err) {
-    return next(err);
+app.post(
+  "/sign-up",
+  validation.validateSignUp,
+  validation.handleValidationErrors,
+  (req, res, next) => {
+    try {
+      bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
+        if (err) return next(err);
+        else {
+          req.body.password = hashedPassword;
+          memberController.addMember(req, res);
+          res.redirect("/");
+        }
+      });
+    } catch (err) {
+      return next(err);
+    }
   }
-});
+);
 
 passport.use(
   new LocalStrategy(
