@@ -63,9 +63,13 @@ app.get("/membership", (req, res) => {
   else throw new Error("not auth");
 });
 
-app.post('/membership', (req,res) => {
-  memberController.getMemberShip(req,res);
-})
+app.post("/membership", (req, res) => {
+  memberController.getMemberShip(req, res);
+});
+
+app.get("/delete/:id", (req, res) => {
+  messageController.deleteMessage(req, res);
+});
 
 app.post("/sign-up", (req, res, next) => {
   try {

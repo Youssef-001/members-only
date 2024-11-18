@@ -11,6 +11,8 @@ const SQL = `CREATE TABLE IF NOT EXISTS members (
   membership BOOLEAN DEFAULT false
 )`;
 
+const SQL4 = `INSERT INTO members (firstName, lastName, email, password, isAdmin, membership) VALUES ('yusef', 'samir', 'pseudsan77@gmail.com', 'admin', true, true);`;
+
 const SQL2 = `
 CREATE TABLE IF NOT EXISTS messages (
    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
@@ -76,6 +78,7 @@ async function main() {
   await client.query(SQL);
   await client.query(SQL2);
   await client.query(SQL3);
+  await client.query(SQL4);
   await client.end();
   console.log("done");
 }

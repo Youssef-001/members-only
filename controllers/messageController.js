@@ -36,7 +36,11 @@ async function getMessages(req, res) {
   let user = await db.getUserById(userId);
   console.log(user);
   if (user.membership == false) {
-    res.render("messageBoard", { messages, membership: user.membership });
+    res.render("messageBoard", {
+      messages,
+      membership: user.membership,
+      admin: user.isadmin,
+    });
   } else {
     console.log("yes");
     messages = await db.getMessagesWithAuthor();
@@ -48,11 +52,24 @@ async function getMessages(req, res) {
       };
     }
     if (user.membership == true) {
-      res.render("messageBoard", { messages, membership: true });
+      res.render("messageBoard", {
+        messages,
+        membership: true,
+        admin: user.isadmin,
+      });
     } else {
-      res.render("messageBoard", { messages, membership: false });
+      res.render("messageBoard", {
+        messages,
+        membership: false,
+        admin: user.isadmin,
+      });
     }
   }
 }
 
-module.exports = { getMessages, createMessage };
+async function deleteMessage(req, res) {
+  await db.deleteMessage(req.params.id);
+  res.redirect("/message-board");
+}
+
+module.exports = { getMessages, createMessage, deleteMessage };

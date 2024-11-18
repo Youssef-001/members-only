@@ -57,6 +57,10 @@ async function giveMembership(id) {
   await pool.query(`UPDATE members SET membership=true WHERE id=$1`, [id]);
 }
 
+async function deleteMessage(id) {
+  await pool.query(`DELETE FROM messages WHERE id=$1`, [id]);
+}
+
 module.exports = {
   addMember,
   getUserByEmail,
@@ -66,4 +70,5 @@ module.exports = {
   getMessagesWithAuthor,
   addMessage,
   giveMembership,
+  deleteMessage,
 };

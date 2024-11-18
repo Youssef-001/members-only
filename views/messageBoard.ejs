@@ -30,6 +30,17 @@
       border-bottom: 2px solid #f7bb50;
       font-family: Helvetica;
     }
+
+    .delete {
+      color: white;
+      background-color: #c82333;
+      border-radius: 12px;
+      width: 4rem;
+      margin-left: auto;
+      margin-bottom: 12px;
+      border-color: #bd2130;
+      padding: 10px;
+    }
   </style>
   <body>
     <%-include('header'), {membership}%>
@@ -46,6 +57,10 @@
             By <%=(typeof(message.author)=='string') ? message.author :
             "Anonymous"%>
           </h4>
+
+          <% if (admin) { %>
+          <a class="delete" href="/delete/<%= message.id %>">Delete</a>
+          <% } %>
         </div>
         <% }); %>
       </div>
